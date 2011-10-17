@@ -35,7 +35,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/desksms', function(req, res){
-  res.redirect('http://clockworkmod.github.com/desksms');
+  res.redirect('https://desksms.appspot.com');
 });
 
 var listenPort = process.env.PORT == null ? 3000 : parseInt(process.env.PORT);
