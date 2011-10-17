@@ -38,6 +38,7 @@ app.get('/desksms', function(req, res){
   res.redirect('http://clockworkmod.github.com/desksms');
 });
 
+var listenPort = process.env.PORT == null ? 3000 : parseInt(process.env.PORT);
+app.listen(listenPort);
+console.log('Express app started on port ' + listenPort);
 
-app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
