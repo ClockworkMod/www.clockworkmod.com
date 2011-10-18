@@ -4,10 +4,7 @@ header.jumbotron.padded.masthead
   .inner
     .container
       h1 ROM Manager
-      p.lead and ClockworkMod Recovery Images
-      br
-      p.lead The recommended way to flash a recovery is through the ROM Manager app itself.
-      p.lead Below you can find recovery images for manual flashing.
+      p.lead ROMs and Recovery Images
 
 .container
   .section
@@ -21,16 +18,20 @@ header.jumbotron.padded.masthead
       .span1
         br
     .row
-      .span8.offset4
+      .span12.offset2
         table.zebra-striped
           thead
             th 
               h5 Device Name
             th
-              h5 Version
+              h5 ROMs
+            th
+              h5 Download Recovery
           tbody
             - for device in devices
               tr
                 td=device.name
+                td
+                  a(href='/rommanager/developers/' + device.key + '?name=' + encodeURIComponent(device.name)) Download ROMs
                 td
                   a(href=device.downloadUrl)=device.version

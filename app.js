@@ -9,6 +9,7 @@ var url = require('url');
 var collections = require('./collections');
 var sprintf = require('./sprintf').sprintf;
 var dirty = require('./dirty');
+var md5 = require('./md5').md5;
 
 var app = module.exports = express.createServer();
 
@@ -115,15 +116,85 @@ app.get('/rommanager', function(req, res) {
   });
 });
 
+app.get('/rommanager/device/:device/developer/:developerId', function(req, res) {
+  var id = req.params.developerId;
+  var manifest = req.query.manifest;
+  var device = req.params.device;
+  var name = req.query.name;
+  if (!manifest || !name) {
+    res.redirect('/rommanager/devices');
+    return;
+  }
+  
+  clean(manifest, function(err, data) {
+    if (err) {
+      res.render('rommanager/developer', {
+        title: 'ClockworkMod ROM Manager - ROMs',
+        developer: name,
+        error: 'This developer section is currently under maintenance.'
+      });
+    }
+    else {
+      var roms = data.roms;
+      
+      ajax("http://rommanager.clockworkmod.com/v2/ratings/" + id, function(err, data) {
+        var ratings = data.result;
+        console.log(ratings);
+      
+        roms = collections.filter(roms, function(index, rom) {
+          if (rom.device == device || rom.device == 'all') {
+            if (rom.urls)
+              rom.url = rom.urls[0];
+            if (rom.url) {
+              if (!rom.modversion)
+                rom.modversion = md5(rom.url);
 
-app.get('/rommanager/developers', function(req, res) {
+              var rating = ratings[rom.modversion];
+              if (rating) {
+                rom.rating = Math.round(rating.rating * 100 / 5);
+                rom.downloadCount = rating.downloads;
+                console.log(rom.rating);
+              }
+              return rom;
+            }
+          }
+        });
+
+        res.render('rommanager/developer', {
+          title: 'ClockworkMod ROM Manager - ROMs',
+          developer: name,
+          error: '',
+          roms: roms
+        });
+      });
+    }
+  });
+});
+
+app.get('/rommanager/developers/:device', function(req, res) {
   res.header('Cache-Control', 'max-age=300');
-  ajax('http://gh-pages.clockworkmod.com/ROMManagerManifest/manifests.js', function(req, res) {
+  var name = req.query.name;
+  var url = 'http://gh-pages.clockworkmod.com/ROMManagerManifest/manifest/' + req.params.device + '.js';
+  ajax(url, function(err, data) {
     var manifests = data.manifests;
-
-    res.render('rommanager/developers', {
-      title: 'ClockworkMod ROM Manager - ROMs',
-      manifests: manifests
+    
+    ajax("http://rommanager.clockworkmod.com/v2/ratings", function(err, data) {
+      var ratings = data.result;
+      
+      collections.each(manifests, function(index, manifest) {
+        var rating = ratings[manifest.id];
+        if (rating) {
+          manifest.rating = Math.round(rating.totalRating / rating.ratingCount * 100 / 5);
+          manifest.downloadCount = rating.downloadCount + rating.anonymousDownloadCount;
+        }
+      });
+      
+      res.render('rommanager/developers', {
+        title: 'ClockworkMod ROM Manager - ROMs',
+        manifests: manifests,
+        device: req.params.device,
+        deviceName: name
+      });
     });
   });
 });

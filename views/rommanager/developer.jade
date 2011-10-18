@@ -1,0 +1,47 @@
+include ../topbar
+
+script(type='text/javascript')
+  console.log('foo');
+  $(document).ready(function() {
+  $('img').load(function() {
+    }).error(function(e) {
+      $(e.target).attr('src', '/images/no-icon.png');
+    });
+  });
+
+header.jumbotron.padded.masthead
+  .inner
+    .container
+      h1=developer
+      p.lead=error
+
+
+.container
+  .section
+    .row
+      .span16
+        table.zebra-striped
+          thead
+            th ROM
+            th Description
+            th Download
+          tbody
+            - for rom in roms
+              tr
+                td
+                  h4=rom.name
+                  - if (rom.rating)
+                    .classification
+                      .cover
+                      .progress(style="width: " + rom.rating + "%")
+                    h5='(' + rom.downloadCount + ' downloads)'
+                td(style='vertical-align: middle')
+                  div=rom.summary
+                  div
+                    - if (rom.screenshots)
+                      - for screenshot in rom.screenshots
+                        a.highslide(href=screenshot, onclick="return hs.expand(this)")
+                          img.thumbnail(src=screenshot)
+                td
+                  a(href=rom.url)
+                    img(src='/images/rommanager-icon.png')

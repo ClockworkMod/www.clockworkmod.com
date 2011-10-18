@@ -1,16 +1,28 @@
 include ../topbar
 
+script(type='text/javascript')
+  console.log('foo');
+  $(document).ready(function() {
+  $('img').load(function() {
+    }).error(function(e) {
+      $(e.target).attr('src', '/images/no-icon.png');
+    });
+  });
+
 header.jumbotron.padded.masthead
   .inner
     .container
       h1 ROM Manager Downloads
+      p.lead
+        b=deviceName
+      br
       p.lead Can't find your favorite developer?
       p.lead Ask them to put their Android updates onto ROM Manager!
       
 .container
   .section
     .row
-      .span8.offset4
+      .span16
         table.zebra-striped
           thead
             th 
@@ -19,8 +31,17 @@ header.jumbotron.padded.masthead
           tbody
             - for manifest in manifests
               tr
+                - var url = '/rommanager/device/' + device + '/developer/' + encodeURIComponent(manifest.id) + '?manifest=' + encodeURIComponent(manifest.manifest) + '&name=' + encodeURIComponent(manifest.developer) + "&id=" 
                 td
                   - if (manifest.icon)
-                    img(src=manifest.icon)
-                td=manifest.developer
-                td=manifest.summary
+                    a(href=url)
+                      img.icon(src=manifest.icon)
+                td(style='vertical-align: middle')
+                  a(href=url)
+                    h4=manifest.developer
+                  - if (manifest.rating)
+                    .classification
+                      .cover
+                      .progress(style="width: " + manifest.rating + "%")
+                    h5='(' + manifest.downloadCount + ' downloads)'
+                td(style='vertical-align: middle')=manifest.summary
