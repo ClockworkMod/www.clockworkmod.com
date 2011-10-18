@@ -1,0 +1,26 @@
+include ../topbar
+
+header.jumbotron.padded.masthead
+  .inner
+    .container
+      h1 ROM Manager Downloads
+      p.lead Can't find your favorite developer?
+      p.lead Ask them to put their Android updates onto ROM Manager!
+      
+.container
+  .section
+    .row
+      .span8.offset4
+        table.zebra-striped
+          thead
+            th 
+            th Developer
+            th Description
+          tbody
+            - for manifest in manifests
+              tr
+                td
+                  - if (manifest.icon)
+                    img(src=manifest.icon)
+                td=manifest.developer
+                td=manifest.summary
