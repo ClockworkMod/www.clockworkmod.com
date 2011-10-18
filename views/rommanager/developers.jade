@@ -17,7 +17,7 @@ header.jumbotron.padded.masthead
         b=deviceName
       br
       p.lead Can't find your favorite developer?
-      p.lead Ask them to put their Android updates onto ROM Manager!
+      p.lead Ask them to put their ROMs onto ROM Manager!
       
 .container
   .section
@@ -31,7 +31,7 @@ header.jumbotron.padded.masthead
           tbody
             - for manifest in manifests
               tr
-                - var url = '/rommanager/device/' + device + '/developer/' + encodeURIComponent(manifest.id) + '?manifest=' + encodeURIComponent(manifest.manifest) + '&name=' + encodeURIComponent(manifest.developer) + "&id=" 
+                - var url = '/rommanager/device/' + device + '/developer/' + encodeURIComponent(manifest.id) + '?manifest=' + encodeURIComponent(manifest.manifest) + '&name=' + encodeURIComponent(manifest.developer) + "&deviceName=" + deviceName
                 td
                   - if (manifest.icon)
                     a(href=url)

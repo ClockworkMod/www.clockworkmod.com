@@ -13,7 +13,11 @@ header.jumbotron.padded.masthead
   .inner
     .container
       h1=developer
-      p.lead=error
+      p.lead
+        b=deviceName
+      - if (error)
+        br
+        p.lead=error
 
 
 .container

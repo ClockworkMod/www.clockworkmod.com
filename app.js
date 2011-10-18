@@ -121,6 +121,7 @@ app.get('/rommanager/device/:device/developer/:developerId', function(req, res) 
   var manifest = req.query.manifest;
   var device = req.params.device;
   var name = req.query.name;
+  var deviceName = req.query.deviceName;
   if (!manifest || !name) {
     res.redirect('/rommanager/devices');
     return;
@@ -164,7 +165,8 @@ app.get('/rommanager/device/:device/developer/:developerId', function(req, res) 
           title: 'ClockworkMod ROM Manager - ROMs',
           developer: name,
           error: '',
-          roms: roms
+          roms: roms,
+          deviceName: deviceName
         });
       });
     }
