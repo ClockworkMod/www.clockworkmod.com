@@ -117,6 +117,7 @@ app.get('/rommanager', function(req, res) {
 });
 
 app.get('/rommanager/device/:device/developer/:developerId', function(req, res) {
+  res.header('Cache-Control', 'max-age=300');
   var id = req.params.developerId;
   var manifest = req.query.manifest;
   var device = req.params.device;
