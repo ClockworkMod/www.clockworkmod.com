@@ -1,0 +1,36 @@
+include topbar
+
+header.jumbotron.padded.masthead
+  .inner
+    .container
+      h1 ROM Manager
+      p.lead (and ClockworkMod Recovery Images)
+      br
+      p.lead The recommended way to flash a recovery is through the ROM Manager app itself.
+      p.lead Below you can find recovery images for manual flashing.
+
+.container
+  .section
+    .row
+      .span8.offset4.columns(align='center')
+        a(href='http://download.clockworkmod.com/recoveries/RomManager.apk')
+          img(src='/images/rommanager-icon.png')
+        h3
+          a(href='http://download.clockworkmod.com/recoveries/RomManager.apk') ROM Manager APK
+    .row
+      .span1
+        br
+    .row
+      .span8.offset4
+        table.zebra-striped
+          thead
+            th 
+              h5 Device Name
+            th
+              h5 Version
+          tbody
+            - for device in devices
+              tr
+                td=device.name
+                td
+                  a(href=device.downloadUrl)=device.version
