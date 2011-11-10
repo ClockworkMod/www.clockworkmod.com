@@ -202,6 +202,12 @@ app.get('/rommanager/developers/:device', function(req, res) {
   });
 });
 
+app.get('/survey/ad', function(req, res) {
+  res.render('survey/ad', {
+    title: 'ClockworkMod ROM Manager - Survey'
+  });
+});
+
 var listenPort = process.env.PORT == null ? 3000 : parseInt(process.env.PORT);
 app.listen(listenPort);
 console.log('Express app started on port ' + listenPort);
