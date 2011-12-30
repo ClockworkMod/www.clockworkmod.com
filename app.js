@@ -202,6 +202,12 @@ app.get('/rommanager/developers/:device', function(req, res) {
   });
 });
 
+app.get('/tether', function(req, res) {
+  res.render('tether', {
+    title: 'ClockworkMod Tether'
+  });
+});
+
 app.get('/survey/ad', function(req, res) {
   res.render('survey/ad', {
     title: 'ClockworkMod ROM Manager - Survey'
