@@ -3,8 +3,8 @@
   "driver_url": "http://download.clockworkmod.com/drivers/%s",
   "drivers": {
     "samsung": {
-      "soju": "google-adb-drivers.zip",
-      "sojua": "google-adb-drivers.zip",
+      "crespo": "google-adb-drivers.zip",
+      "crespo4g": "google-adb-drivers.zip",
       "maguro": "Verizon_Wireless_I515_Galaxy_Nexus_USB_Driver_v1.4.6.0.exe",
       "toro": "Verizon_Wireless_I515_Galaxy_Nexus_USB_Driver_v1.4.6.0.exe",
       "universal": "SAMSUNG_USB_Driver_for_Mobile_Phones.exe"
