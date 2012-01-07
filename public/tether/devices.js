@@ -1,4 +1,5 @@
 {
+  "tether_url": "http://download.clockworkmod.com/tether",
   "driver_url": "http://download.clockworkmod.com/drivers/%s",
   "drivers": {
     "samsung": {
