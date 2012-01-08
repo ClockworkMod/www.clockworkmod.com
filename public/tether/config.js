@@ -2,6 +2,9 @@
   "tether_url": "http://download.clockworkmod.com/tether/%s",
   "driver_url": "http://download.clockworkmod.com/drivers/%s",
   "drivers": {
+    "sony": {
+      "universal": "http://download.clockworkmod.com/drivers/Sony_Ericsson_PC_Companion_2.02.002_Web.exe"
+    },
     "samsung": {
       "crespo": "google-adb-drivers.zip",
       "crespo4g": "google-adb-drivers.zip",
