@@ -36,7 +36,17 @@ header.jumbotron.subhead
           .span8
             center
               h5 Your Android, unlocked.
-
+        .row
+          .span8
+            center
+              a(href="javascript:startPurchase('Tether', 'tether.premium')")
+                img(style="vertical-align:middle", src='images/wallet.png')
+                span(style="vertical-align:middle") gift me!
+          .span8
+            center
+              a(href="javascript:startPurchase('ROM Manager', 'donation')")
+                img(style="vertical-align:middle", src='images/wallet.png')
+                span(style="vertical-align:middle") gift me!
 
         .row
           .span16
@@ -52,6 +62,12 @@ header.jumbotron.subhead
           .span16
             center
               h5 Seamlessly text message from your email, browser, or instant messenger.
+        .row
+          .span16
+            center
+              a(href="javascript:startPurchase('DeskSMS', 'desksms.subscription0')")
+                img(style="vertical-align:middle", src='images/wallet.png')
+                span(style="vertical-align:middle") gift me!
 
     br
     br
@@ -66,3 +82,30 @@ header.jumbotron.subhead
     br
     br
     br
+
+
+
+#start-purchase.dialog-container.hidden
+  .ui-dialog(style='outline-width: 0px; outline-style: initial; outline-color: initial; height: auto; width: 100%; top: 40px; display: block; z-index: 1001;')
+    .modal(style='position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1')
+      .modal-header
+        center
+          h3#buy-title Buy
+        a.close(href='javascript:void(0)', onclick='closeDialog(this)') &times;
+      section.modal-body
+        center
+          #product-id.hidden
+          h5 Please enter your email address.
+          h5 This is where your redeem code will be sent.
+          h5 A redeem code can be used by anyone. Give it as a gift!
+          br
+          div
+            h5 Email
+          div
+            input#buy-email
+          div
+            h5 Confirm Email
+          div
+            input#buy-email-confirm
+      .modal-footer
+        a.btn.primary(href='javascript:void(0)', onclick='doPurchase()') Buy

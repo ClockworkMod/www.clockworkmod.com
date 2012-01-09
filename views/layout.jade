@@ -2,9 +2,18 @@
 html
   head
     title= title
+    link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/docs.css')
     link(rel='stylesheet', href='/highslide/highslide.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js', type='text/javascript')
+    script(type='text/javascript', src='/javascripts/jquery.query-2.1.7.js')
+    script(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js')
     script(type='text/javascript', src='/highslide/highslide.js')
+    script(type='text/javascript', src='//www.google.com/jsapi')
+    script(type='text/javascript', src='/javascripts/jsonp.js')
+    script(type='text/javascript', src='/javascripts/json2.js')
+    script(type='text/javascript', src='/javascripts/sprintf.js')
+    script(type='text/javascript', src='/javascripts/purchase.js')
   body!= body
