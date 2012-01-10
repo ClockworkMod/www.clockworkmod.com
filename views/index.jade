@@ -42,17 +42,33 @@ header.jumbotron.subhead
               a(href="javascript:startPurchase('Tether', 'tether.premium')")
                 img(style="vertical-align:middle", src='images/wallet.png')
                 span(style="font-size: 14px; vertical-align:middle") gift me!
-              span='   '
+              a
+                span(style='font-size: 10px; vertical-align:middle')='   |   '
               a(href='http://download.clockworkmod.com/tether/Tether.apk')
-                span(style='font-size: 10px; vertical-align:middle') (apk)
+                img(style="vertical-align:middle", src='images/android.png')
+                span(style='font-size: 10px; vertical-align:middle') android app
+              a
+                span(style='font-size: 10px; vertical-align:middle')='   |   '
+              a(href='http://download.clockworkmod.com/tether/TetherWindowsSetup.msi')
+                img(style="vertical-align:middle", src='images/windows.png')
+              a
+                span(style='font-size: 10px; vertical-align:middle')='   |   '
+              a(href='http://download.clockworkmod.com/tether/tether-mac.zip')
+                img(style="vertical-align:middle", src='images/apple.png')
+              a
+                span(style='font-size: 10px; vertical-align:middle')='   |   '
+              a(href='http://download.clockworkmod.com/tether/tether-linux.tgz')
+                img(style="vertical-align:middle", src='images/linux.png')
           .span8
             center
                 a(href="javascript:startPurchase('ROM Manager', 'donation')")
                   img(style="vertical-align:middle", src='images/wallet.png')
                   span(style="font-size: 14px; vertical-align:middle") gift me!
-                span='   '
+                a
+                  span(style='font-size: 10px; vertical-align:middle')='   |   '
                 a(href='http://download.clockworkmod.com/recoveries/RomManager.apk')
-                  span(style='font-size: 10px; vertical-align:middle') (apk)
+                  img(style="vertical-align:middle", src='images/android.png')
+                  span(style='font-size: 10px; vertical-align:middle') android app
 
 
 
@@ -76,9 +92,11 @@ header.jumbotron.subhead
               a(href="javascript:startPurchase('DeskSMS', 'desksms.subscription0')")
                 img(style="vertical-align:middle", src='images/wallet.png')
                 span(style="font-size: 14px; vertical-align:middle") gift me!
-                span='   '
+                a
+                  span(style='font-size: 10px; vertical-align:middle')='   |   '
                 a(href='http://download.clockworkmod.com/apks/DesktopSms.apk')
-                  span(style='font-size: 10px; vertical-align:middle') (apk)
+                  img(style="vertical-align:middle", src='images/android.png')
+                  span(style='font-size: 10px; vertical-align:middle') android app
 
     br
     br
@@ -93,7 +111,6 @@ header.jumbotron.subhead
     br
     br
     br
-
 
 
 #start-purchase.dialog-container.hidden
@@ -102,6 +119,33 @@ header.jumbotron.subhead
       .modal-header
         center
           h3#buy-title Buy
+        a.close(href='javascript:void(0)', onclick='closeDialog(this)') &times;
+      section.modal-body
+        center
+          #product-id.hidden
+          h5 Please enter your email address.
+          h5 This is where your redeem code will be sent.
+          h5 A redeem code can be used by anyone. Give it as a gift!
+          br
+          div
+            h5 Email
+          div
+            input#buy-email
+          div
+            h5 Confirm Email
+          div
+            input#buy-email-confirm
+      .modal-footer
+        a.btn.primary(href='javascript:void(0)', onclick='doPurchase()') Buy
+
+
+
+#tether-installer.dialog-container.hidden
+  .ui-dialog(style='outline-width: 0px; outline-style: initial; outline-color: initial; height: auto; width: 100%; top: 40px; display: block; z-index: 1001;')
+    .modal(style='position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1')
+      .modal-header
+        center
+          h3 Tether Installer - Please Choose Operating System
         a.close(href='javascript:void(0)', onclick='closeDialog(this)') &times;
       section.modal-body
         center
