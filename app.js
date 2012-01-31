@@ -107,7 +107,7 @@ app.get('/rommanager', function(req, res) {
       if (device.touch_version) {
         var touchDownloadUrl = device.readonly_recovery ? data.recovery_zip_url : data.recovery_url;
         touchDownloadUrl = sprintf(downloadUrl, 'touch-' + device.touch_version, device.key);
-        device.touchDownloadUrl = downloadUrl;
+        device.touchDownloadUrl = touchDownloadUrl;
       }
       return device;
     });
