@@ -27,6 +27,8 @@ header.jumbotron.padded.masthead
               h5 ROMs
             th
               h5 Download Recovery
+            th
+              h5 Download Touch Recovery
           tbody
             - for device in devices
               tr
@@ -35,3 +37,8 @@ header.jumbotron.padded.masthead
                   a(href='/rommanager/developers/' + device.key + '?name=' + encodeURIComponent(device.name)) Download ROMs
                 td
                   a(href=device.downloadUrl)=device.version
+                - if (device.touchDownloadUrl)
+                  td
+                    a(href=device.touchDownloadUrl)=device.touch_version
+                - else
+                  td N/A
