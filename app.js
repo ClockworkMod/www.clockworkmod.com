@@ -187,15 +187,17 @@ app.get('/rommanager/developers/:device', function(req, res) {
     var manifests = data.manifests;
     
     ajax("http://rommanager.clockworkmod.com/v2/ratings", function(err, data) {
-      var ratings = data.result;
-      
-      collections.each(manifests, function(index, manifest) {
-        var rating = ratings[manifest.id];
-        if (rating) {
-          manifest.rating = Math.round(rating.totalRating / rating.ratingCount * 100 / 5);
-          manifest.downloadCount = rating.downloadCount + rating.anonymousDownloadCount;
-        }
-      });
+      if (data) {
+        var ratings = data.result;
+
+        collections.each(manifests, function(index, manifest) {
+          var rating = ratings[manifest.id];
+          if (rating) {
+            manifest.rating = Math.round(rating.totalRating / rating.ratingCount * 100 / 5);
+            manifest.downloadCount = rating.downloadCount + rating.anonymousDownloadCount;
+          }
+        });
+      }
       
       res.render('rommanager/developers', {
         title: 'ClockworkMod ROM Manager - ROMs',
