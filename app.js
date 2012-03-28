@@ -22,7 +22,7 @@ var ajax = function(urlStr, callback) {
        data += chunk;
      }).on('end', function() {
        try {
-         callback(null, eval("(" + data + ")"));
+         callback(null, JSON.parse(data));
        }
        catch (err) {
          console.log('exception during ajax');
@@ -145,27 +145,29 @@ app.get('/rommanager/device/:device/developer/:developerId', function(req, res) 
       var roms = data.roms;
       
       ajax("http://rommanager.clockworkmod.com/v2/ratings/" + id, function(err, data) {
-        var ratings = data.result;
-        console.log(ratings);
-      
-        roms = collections.filter(roms, function(index, rom) {
-          if (rom.device == device || rom.device == 'all') {
-            if (rom.urls)
-              rom.url = rom.urls[0];
-            if (rom.url) {
-              if (!rom.modversion)
-                rom.modversion = md5(rom.url);
+        if (!err) {
+          var ratings = data.result;
+          console.log(ratings);
 
-              var rating = ratings[rom.modversion];
-              if (rating) {
-                rom.rating = Math.round(rating.rating * 100 / 5);
-                rom.downloadCount = rating.downloads;
-                console.log(rom.rating);
+          roms = collections.filter(roms, function(index, rom) {
+            if (rom.device == device || rom.device == 'all') {
+              if (rom.urls)
+                rom.url = rom.urls[0];
+              if (rom.url) {
+                if (!rom.modversion)
+                  rom.modversion = md5(rom.url);
+
+                var rating = ratings[rom.modversion];
+                if (rating) {
+                  rom.rating = Math.round(rating.rating * 100 / 5);
+                  rom.downloadCount = rating.downloads;
+                  console.log(rom.rating);
+                }
+                return rom;
               }
-              return rom;
             }
-          }
-        });
+          });
+        }
 
         res.render('rommanager/developer', {
           title: 'ClockworkMod ROM Manager - ROMs',
