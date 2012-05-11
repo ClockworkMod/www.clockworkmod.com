@@ -184,7 +184,7 @@ app.get('/rommanager/device/:device/developer/:developerId', function(req, res) 
 app.get('/rommanager/developers/:device', function(req, res) {
   res.header('Cache-Control', 'max-age=300');
   var name = req.query.name;
-  var url = 'http://developer.clockworkmod.com/merge/' + req.params.device;
+  var url = 'http://developer.clockworkmod.com/merge/' + req.params.device + '.js';
   ajax(url, function(err, data) {
     var manifests = data.manifests;
     
