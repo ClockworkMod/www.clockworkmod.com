@@ -150,6 +150,8 @@ app.get('/rommanager/device/:device/developer/:developerId', function(req, res) 
           console.log(ratings);
 
           roms = collections.filter(roms, function(index, rom) {
+            if (rom.visible === false)
+              return;
             if (rom.device == device || rom.device == 'all') {
               if (rom.urls)
                 rom.url = rom.urls[0];
