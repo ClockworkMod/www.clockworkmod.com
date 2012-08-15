@@ -142,31 +142,30 @@ app.get('/rommanager/device/:device/developer/:developerId', function(req, res) 
       });
     }
     else {
-      var roms = data.roms;
-      
+      var roms = collections.filter(data.roms, function(index, rom) {
+        if (rom.visible === false)
+          return;
+        if (rom.device == device || rom.device == 'all') {
+          if (rom.urls)
+            rom.url = rom.urls[0];
+          if (!rom.url)
+            return;
+          if (!rom.modversion)
+            rom.modversion = md5(rom.url);
+          return rom;
+        }
+      });
       ajax("http://rommanager.clockworkmod.com/v2/ratings/" + id, function(err, data) {
         if (!err) {
           var ratings = data.result;
           console.log(ratings);
 
-          roms = collections.filter(roms, function(index, rom) {
-            if (rom.visible === false)
-              return;
-            if (rom.device == device || rom.device == 'all') {
-              if (rom.urls)
-                rom.url = rom.urls[0];
-              if (rom.url) {
-                if (!rom.modversion)
-                  rom.modversion = md5(rom.url);
-
-                var rating = ratings[rom.modversion];
-                if (rating) {
-                  rom.rating = Math.round(rating.rating * 100 / 5);
-                  rom.downloadCount = rating.downloads;
-                  console.log(rom.rating);
-                }
-                return rom;
-              }
+          collections.each(roms, function(index, rom) {
+            var rating = ratings[rom.modversion];
+            if (rating) {
+              rom.rating = Math.round(rating.rating * 100 / 5);
+              rom.downloadCount = rating.downloads;
+              console.log(rom.rating);
             }
           });
         }
