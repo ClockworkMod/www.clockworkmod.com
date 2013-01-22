@@ -213,8 +213,16 @@ app.get('/rommanager/developers/:device', function(req, res) {
 });
 
 app.get('/tether/drivers', function(req, res) {
-  res.render('tether/drivers', {
+  res.render('drivers', {
+    app: 'Tether',
     title: 'ClockworkMod Tether'
+  });
+});
+
+app.get('/carbon/drivers', function(req, res) {
+  res.render('drivers', {
+    app: 'Carbon',
+    title: 'ClockworkMod Carbon'
   });
 });
 
