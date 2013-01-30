@@ -2,3 +2,4 @@ node_modules
 uploads
 downloads
 .npm
+.DS_Store
