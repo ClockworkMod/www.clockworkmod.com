@@ -220,6 +220,7 @@ app.get('/tether/drivers', function(req, res) {
 });
 
 app.get('/carbon', function(req, res) {
+  res.header('Cache-Control', 'max-age=300');
   res.render('carbon', {
     title: 'ClockworkMod Carbon'
   })
