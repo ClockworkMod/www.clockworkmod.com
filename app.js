@@ -220,7 +220,9 @@ app.get('/tether/drivers', function(req, res) {
 });
 
 app.get('/carbon', function(req, res) {
-  res.redirect('/carbon/drivers');
+  res.render('carbon', {
+    title: 'ClockworkMod Carbon'
+  })
 });
 app.get('/carbon/drivers', function(req, res) {
   res.render('drivers', {
