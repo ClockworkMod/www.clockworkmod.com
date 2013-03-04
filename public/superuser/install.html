@@ -32,12 +32,13 @@
 		margin-bottom:2em;
 		}
 		
-		img
-		{
-		display:block;
-		margin:2em auto;
-		max-width:100%;
-		}
+			div img
+			{
+			display:block;
+			margin:0 auto;
+			padding:2em;
+			max-width:100%;
+			}
 		
 		h1
 		{
@@ -51,14 +52,23 @@
 		color:white;
 		font-size:1.25em;
 		padding:.625em;
-		background:#7ab9e9;
-		border-bottom:1px #c4e9f5 solid;
-		box-shadow:0 0 1em #c4e9f5;
+		background:#1a1a1a;
+		border-bottom:1px #14181a solid;
+		box-shadow:0 0 1em #14181a;
 		text-shadow:0 1px 0 #335872;
 		text-overflow:ellipsis;
 		overflow:hidden;
 		white-space:nowrap;
 		}
+		
+			h1 img
+			{
+			display:inline-block;
+			margin-right:.5em;
+			vertical-align:top;
+			height:1em;
+			width:1em;
+			}
 		
 		p
 		{
@@ -70,18 +80,17 @@
 		a
 		{
 		text-decoration:none;
-		color:#335872;
+		color:#7ab9e9;
 		}
 		</style>
 	</head>
 	<body>
-		<h1>ClockworkMod Superuser Alert</h1>
+		<h1><a href="market://details?id=com.koushikdutta.superuser"><img src="superuser.png"></img></a>ClockworkMod Superuser Alert</h1>
 		<div>
-		  <a href="market://details?id=com.koushikdutta.superuser">
-			<img src="superuser.png"></img>
-			</a>
+			<a href="market://details?id=com.koushikdutta.superuser"><img src="superuser.png"></img></a>
 			<p>An application has requested Superuser, but Superuser is not properly installed. To repair Superuser, please <a href="market://details?id=com.koushikdutta.superuser">reinstall Superuser from Google Play</a>.</p>
 			<p>If you then wish to switch or uninstall your Superuser app, use the in app uninstallation process.</p>
+			<a href="market://details?id=com.koushikdutta.superuser"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png"></img></a>
 		</div>
 	</body>
 </html>
