@@ -225,6 +225,7 @@ app.get('/carbon', function(req, res) {
     title: 'ClockworkMod Carbon'
   })
 });
+
 app.get('/carbon/drivers', function(req, res) {
   res.render('drivers', {
     app: 'Carbon',
@@ -236,6 +237,10 @@ app.get('/survey/ad', function(req, res) {
   res.render('survey/ad', {
     title: 'ClockworkMod ROM Manager - Survey'
   });
+});
+
+app.get('/allcast/discover', function(req, res) {
+  res.redirect('https://play.google.com/store/apps/details?id=com.koushikdutta.cast');
 });
 
 var listenPort = process.env.PORT == null ? 3000 : parseInt(process.env.PORT);
