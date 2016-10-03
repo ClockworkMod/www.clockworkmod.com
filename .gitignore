@@ -3,3 +3,5 @@ uploads
 downloads
 .npm
 .DS_Store
+
+public/images/.DS_Store
